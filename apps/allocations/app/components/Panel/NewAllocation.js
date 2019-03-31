@@ -39,7 +39,8 @@ const INITIAL_STATE = {
 }
 
 const message = {
-  addressError: 'All options must be addresses and cannot be duplicates.',
+  addressError:
+    'All options must be non empty addresses and cannot be duplicates.',
   addressSetting: 'Use address book for options',
   allocationError: 'Amount must be more than zero and less than limit.',
   balanceSetting: 'Must vote with entire balance',
@@ -249,6 +250,8 @@ class NewAllocation extends React.Component {
       />
     )
 
+    const activeAddressBookItem = this.state.addressBookInput.index
+
     const addressBookField = (
       <FormField
         label="Address Book Options"
@@ -257,7 +260,7 @@ class NewAllocation extends React.Component {
         separator
         input={
           <AddressDropDownOptions
-            activeItem={state.addressBookInput.index}
+            activeItem={activeAddressBookItem}
             entities={props.entities}
             input={state.addressBookInput}
             name="addressBookCandidates"
@@ -268,6 +271,8 @@ class NewAllocation extends React.Component {
         }
       />
     )
+
+    console.log('addressbook field:', activeAddressBookItem)
 
     const userOptionsField = (
       <FormField
